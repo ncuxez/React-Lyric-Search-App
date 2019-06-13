@@ -10,7 +10,6 @@ export default class Tracks extends Component {
         return (
             <Consumer>
                 { value => {
-                    console.log(value);
                     const { trackList, heading } = value;
                     if(trackList === undefined || trackList.length == 0) {
                         return <Loading />

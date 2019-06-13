@@ -7,13 +7,25 @@ const API_Key = process.env.REACT_APP_MUSIC_API;
 const Context = React.createContext();
 const Consumer = Context.Consumer;
 
+const reducer = (state, action) => {
+    switch(action.type) {
+        case 'SEARCH_TRACKS':
+            return {
+            ...state,
+                trackList: action.payload,
+                heading: 'Search results'
+            };
+        default:
+            return state;
+    }
+};
+
 class Provider extends Component {
 
     state = {
         heading: 'Top Tracks',
-        trackList: [
-        ],
-
+        trackList: [],
+        dispatch: action => this.setState(state => reducer(state, action))
     };
 
     async componentDidMount() {
